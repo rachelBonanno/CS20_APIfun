@@ -1,10 +1,11 @@
 <!doctype html>
 <html>
 <head>
-  <title>Weather API</title>
+  <title>Joke API</title>
   <meta charset="utf-8"/>
+  <link href="style.css" rel="stylesheet" type="text/css">
   <script>
-    function getWeather() {
+    function getAPI() {
       /* Step 1: Make instance of request object...
       ...to make HTTP request after page is loaded*/
       var request = new XMLHttpRequest();
@@ -54,33 +55,52 @@
     }
   </script>
 </head>
-
-
-<body onload="getWeather()">
+<body onload="getAPI()" style="background-color: #9dd2fa; text-align: center;">
 
 <h1>Jokes</h1>
-<h2>[AJAX]</h2>
-<div id="data">Loading...</div>
-<div id="punch">Punchline...</div>
 
-<h2>[FETCH]</h2>
-<div>
-  <p id="fetcher">Loading...</p>
-  <p id="puncher">Punchline...</p>
-  <script>
-    fetch('https://official-joke-api.appspot.com/random_joke').then((response) => {
-      return response.json();
-    }).then((data) => {
-      console.log(data);
-      document.getElementById("fetcher").innerHTML = "Joke: " + data["setup"];
-      setTimeout(function() {
-        document.getElementById("puncher").innerHTML = "Punchline: " + data["punchline"];
-      }, 5000);
-    }).catch((error) => {
-      console.error('There has been a problem with your fetch operation:', error);
-    });
-  </script>
+<div class="box2">
+  <p>
+    This website calls a joke API (cited below) that generates random jokes. I used a GET request for the AJAX <br>
+    programed get part of the website (top box). I then used the fetch function to run the second box of the <br>
+    website. APIs or Application Programming Interfaces are used everyday but people who want to display weather <br>
+    data on a website for a specific location to map data collected from google maps to display store locations.
+  </p>
 </div>
+
+<div class="box">
+  <h2>[AJAX]</h2>
+  <p id="data">Loading...</p>
+  <p id="punch">Punchline...</p>
+</div>
+
+<div class="box">
+  <h2>[FETCH]</h2>
+  <div>
+    <p id="fetcher">Loading...</p>
+    <p id="puncher">Punchline...</p>
+    <script>
+      fetch('https://official-joke-api.appspot.com/random_joke').then((response) => {
+        return response.json();
+      }).then((data) => {
+        console.log(data);
+        document.getElementById("fetcher").innerHTML = "Joke: " + data["setup"];
+        setTimeout(function() {
+          document.getElementById("puncher").innerHTML = "Punchline: " + data["punchline"];
+        }, 5000);
+      }).catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+    </script>
+  </div>
+</div>
+
+<footer>
+  <div class="box2">
+    <p>API: https://official-joke-api.appspot.com/random_joke</p>
+    <p>API Found On: https://apipheny.io/free-api/</p>
+  </div>
+</footer>
 
 </body>
 </html>
